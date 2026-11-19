@@ -36,13 +36,19 @@
 
 ### Contexto de la práctica
 
-En la práctica 1 habíamos programado las piezas más pequeñas del microarray virtual: funciones que trabajaban con una base, con una posición de una secuencia o con un codón. En esta segunda práctica daremos el paso siguiente: **recorreremos secuencias completas** para **buscar en ellas patrones**, y organizaremos el programa en **clases** que representan los elementos del experimento.
+En estas prácticas estamos construyendo un programa inspirado en el funcionamiento de un chip de ADN. El objetivo es analizar los fragmentos de ADN de una muestra y averiguar cuáles contienen los patrones que buscamos.
 
-Cuando se va a analizar una muestra de ADN, el secuenciador obtiene miles de fragmentos cortos de ADN llamados **lecturas**, y los guarda en un fichero de texto con formato FASTQ, una lectura tras otra. En esta práctica, cada lectura será una cadena (`String`) de bases (por ejemplo, `GATTACAGCTTAGC`) con un identificador. También es posible que algunas posiciones contengan la letra `N`, con la que el secuenciador indica que no ha podido determinar la base.
+### Contexto de la práctica
 
-Un **microarray** es un chip con miles de **sondas** ordenadas en una cuadrícula. Cada sonda está diseñada para encontrar en las muestras de ADN una secuencia corta llamada *diana*, característica de un patógeno o de un gen. Cuando un fragmento contiene la diana de una sonda, se une a ella (se *hibrida*) y ese punto del chip se ilumina. En nuestro microarray virtual, cada sonda guarda directamente el **patrón** de su diana, tal como aparece en las lecturas.
+En estas prácticas estamos construyendo un programa inspirado en el funcionamiento de un chip de ADN. El objetivo es analizar los fragmentos de ADN de una muestra y averiguar cuáles contienen los patrones que buscamos.
 
-Además, cada análisis registrará sus **datos de procedencia**: la fecha en que se capturó la muestra y la fecha en que se analizó, que es siempre la del día en que se hace el análisis (la fecha actual).
+En la práctica 1 programamos las funciones básicas del simulador: trabajamos con bases individuales, con posiciones de una secuencia y con codones. En esta segunda práctica daremos el paso siguiente: **recorreremos secuencias completas** para **buscar en ellas patrones**, y organizaremos el programa en **clases** que representan los elementos que intervienen en el análisis.
+
+Cuando se analiza una muestra de ADN, el secuenciador obtiene miles de fragmentos cortos llamados **lecturas**. Estas lecturas se guardan una tras otra en un fichero de texto con formato FASTQ. En esta práctica, cada lectura tendrá un identificador y una secuencia de bases representada como un `String` (por ejemplo, `"GATTACAGCTTAGC"`). También es posible que algunas posiciones contengan la letra `N`, con la que el secuenciador indica que no ha podido determinar la base.
+
+¿Qué buscamos en cada lectura? En un chip de ADN real, cada **sonda** reconoce una secuencia corta llamada *diana*, que puede ser característica de un gen o de un patógeno. Cuando un fragmento que contiene la diana se une a la sonda, decimos que *hibrida* con ella, y el punto correspondiente del chip se ilumina. En nuestro microarray virtual simplificaremos este proceso: cada sonda guardará el patrón de su diana tal como aparece en las lecturas. Para saber si una lectura contiene la diana, buscaremos ese patrón en su secuencia.
+
+Además de los resultados, cada análisis registrará sus **datos de procedencia** (dos fechas): la fecha en que se capturó la muestra y la fecha en que se analizó, que es siempre la del día en que se hace el análisis. El programa tomará esta última de la fecha actual.
 
 ### Búsqueda de patrones
 
